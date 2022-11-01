@@ -1,0 +1,45 @@
+div {
+    margin:auto;
+}
+
+mat-slider {
+    width: 500px;
+}
+
+h1,h5{
+    margin-top: 4px;
+    color: #8c8c8c; 
+}
+
+.quote-calculator-container{
+    width: 500px;
+}
+
+.quote-header{
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.slider-container{
+    /* width: 450px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.slider-text-container{
+    display: flex;
+    justify-content: space-between;
+    color: #8c8c8c; 
+}
+
+div.calculate-quote{
+    margin-top: 10px;
+}
+
+button.calculate-quote {
+    width: 300px;
+    height: 50px;
+    font-size: 22px;
+    background-color: #4cd133 !important;
+}
