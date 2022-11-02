@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Quote {
+export interface Quote {
   amountRequired?: number,
   term?: number,
   title?: string,

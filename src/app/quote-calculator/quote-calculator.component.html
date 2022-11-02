@@ -1,9 +1,9 @@
-<div class="quote-calculator-container">
+<div class="quote-container">
     <form class="example-form">
         <h1 class="quote-header">Quote Calculator</h1>
         <div>
             <div class="slider-container">
-                <mat-slider thumbLabel aria-label="unit(s)" [min]="amountMin" [max]="amountMax" [(ngModel)]="quote.amountRequired" name="amountRequired"></mat-slider>
+                <mat-slider thumbLabel aria-label="unit(s)" [min]="amountMin" [max]="amountMax" step="100" [(ngModel)]="quote.amountRequired" name="amountRequired"></mat-slider>
                 <div class="slider-text-container">
                     <span><b>{{amountMin | currency: '$ ' : 'symbol' : '1.0-0'}}</b></span>
                     <span class="slider-label">{{sliderAmountLabel}}</span>
@@ -60,7 +60,7 @@
         </div>
         
         <div class="calculate-quote text-align-center">
-            <button type="submit" class="calculate-quote" mat-raised-button color="primary">Calculate Quote</button>
+            <button type="submit" class="quote-primary" mat-raised-button color="primary">Calculate quote</button>
             <h5>Quote does not affect your credit score</h5>
         </div>
     </form>

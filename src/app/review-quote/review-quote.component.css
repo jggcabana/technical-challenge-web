@@ -1,0 +1,40 @@
+div{
+    font-size: 14px;
+}
+
+.edit-label{
+    color: #1cd5d3
+}
+
+.info-row{
+    margin-bottom: 5px;
+}
+
+.info-row span:not(.edit-label){
+    color: #8c8c8c;
+}
+
+.info-row-main{
+    color: #818181;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.dotted-line{
+    height: 7.5px;
+    border-bottom: 1px dashed  #8c8c8c;
+    margin-top: 3px;
+    margin-right: 7.5px;
+    flex-grow: 1;
+}
+
+div.apply-quote{
+    margin-top: 10px;
+}
+
+div.apply-quote > p {
+    margin-top: 12.5px;
+    color: #8c8c8c;
+    font-size: 13.5px;
+}
+
