@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { QuoteService } from '../quote.service';
 import { Quote } from './../models/quote';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-quote-calculator',
@@ -42,6 +43,10 @@ export class QuoteCalculatorComponent implements OnInit {
       });
   }
 
+  onProductChange($event : MatSelectChange) : void {
+    this.termMin = $event.value.interest?.durationMin || 1;
+  }
+
   ngOnInit(): void {
     
     this._quoteService.getProducts()
@@ -57,6 +62,7 @@ export class QuoteCalculatorComponent implements OnInit {
             this.quote = data;
             if(this.quote.product)
               this.selectedProduct = this.products[this.products.findIndex(x => x.id === this.quote.product?.id)];
+              this.termMin = this.quote.product?.interest?.durationMin || 1;
           });
 
     });

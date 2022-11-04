@@ -4,7 +4,7 @@
         <div>
             <mat-form-field appearance="fill" class="width-max">
                 <mat-label>Select Product</mat-label>
-                <mat-select [value]="selectedProduct" [(ngModel)]="quote.product" name="product">
+                <mat-select [value]="selectedProduct" [(ngModel)]="quote.product" name="product" (selectionChange)="onProductChange($event)">
                 <mat-option *ngFor="let product of products" [value]="product">
                     {{product.name}} - {{product.description}}
                 </mat-option>

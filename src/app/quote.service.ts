@@ -13,7 +13,11 @@ export class QuoteService {
   constructor(private http: HttpClient) { }
 
   private handleError(error : HttpErrorResponse){
-    alert(error.error);
+    if(error.error.hasOwnProperty('errors')){
+      alert(JSON.stringify(error.error.errors)); // TODO: please refactor this hack
+    } else{
+      alert(error.error);
+    }
    return throwError(() => new Error(error.error));
   }
 
@@ -27,7 +31,8 @@ export class QuoteService {
 
   calculateQuote(quote: Quote) : Observable<HttpResponse<CalculateQuoteResponse>>{
     const url = `${API_URL}/quotes/${quote.id}/calculate`;
-    return this.http.post<CalculateQuoteResponse>(url, quote, { observe : 'response' });
+    return this.http.post<CalculateQuoteResponse>(url, quote, { observe : 'response' })
+    .pipe(catchError(this.handleError));
   }
 
   applyQuote(quote: Quote) :  Observable<HttpResponse<Quote>>{
