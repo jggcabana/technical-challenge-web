@@ -2,7 +2,7 @@
     <h1 class="quote-header">Your quote</h1>
     <div class="flex-space-between info-row-main info-row ">
         <span>Your information</span>
-        <span class="edit-label">Edit</span>
+        <span class="edit-label"><a class="edit-info" (click)="editInfo()">Edit</a></span>
     </div>
     <div class="flex-space-between info-row">
         <span>Name</span>
@@ -14,11 +14,11 @@
     </div>
     <div class="flex-space-between info-row">
         <span>Email</span>
-        <span>{{quote.email}}}</span>
+        <span>{{quote.email}}</span>
     </div>
     <div class="flex-space-between info-row-main info-row ">
         <span>Finance details</span>
-        <span class="edit-label">Edit</span>
+        <span class="edit-label"><a class="edit-info" (click)="editInfo()">Edit</a></span>
     </div>
     <div class="flex-space-between info-row ">
         <span>Finance amount</span>
@@ -30,15 +30,15 @@
     </div>
     <div class="flex-space-between info-row ">
         <span>Repayments from</span>
-        <span class="edit-label">{{repayments | currency: 'USD':'symbol'}}</span>
+        <span class="edit-label">{{quote.repayment | currency: 'USD':'symbol'}}</span>
     </div>
     <div class="flex-space-between info-row ">
         <div class="dotted-line"></div>
         <span>Weekly</span>
     </div>
     <div class="apply-quote text-align-center">
-        <button type="submit" class="quote-primary" mat-raised-button color="primary">Apply quote</button>
-        <p>Total {{totalRepayments | currency:'USD'}}, made up of an establishment fee of {{establishmentFee | currency:'USD'}}, interest of {{interest | currency: 'USD'}}. The repayment amount is based on the variables selected, is subject to our assessment and suitability, and other important terms and conditions apply.</p>
+        <button type="submit" class="quote-primary" mat-raised-button color="primary" (click)="applyQuote()">Apply quote</button>
+        <p>Total {{ totalRepayments | currency:'USD'}}, made up of an establishment fee of {{quote.establishmentFee | currency:'USD'}}, interest of {{quote.interestAmount | currency: 'USD'}}. The repayment amount is based on the variables selected, is subject to our assessment and suitability, and other important terms and conditions apply.</p>
     </div>
 </div>
 

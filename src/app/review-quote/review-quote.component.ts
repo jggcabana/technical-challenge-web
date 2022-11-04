@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from './../quote-calculator/quote-calculator.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuoteService } from '../quote.service';
+import { Quote } from './../models/quote';
 
 @Component({
   selector: 'app-review-quote',
@@ -8,23 +10,41 @@ import { Quote } from './../quote-calculator/quote-calculator.component';
 })
 export class ReviewQuoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _quoteService : QuoteService, private _route : ActivatedRoute, private _router : Router) { }
 
-  quote : Quote = {
-    firstName: 'Wagtest',
-    lastName: 'Wagtest',
-    mobile: '0477095252',
-    email: 'wagtesttest@test.com',
-    amountRequired: 5000,
-    term: 24
-  };
+  quote : Quote = {};
+  totalRepayments : number = 0;
+  editButtonLink: string = "";
 
-  repayments: number = 56.15;
-  totalRepayments: number = 5_839.60;
-  interest: number = 539.60;
-  establishmentFee : number = 300;
+  applyQuote() : void {
+    this._quoteService.applyQuote(this.quote)
+      .subscribe(response => {
+        console.log(response.body);
+        if(response.ok)
+          alert('Quote saved successfully!'); // TODO: make a separate success page.
+      });
+  }
+
+  
+  editInfo() : void {
+    this._router.navigate([`/quote-calculator/${this.quote.id}`])
+  }
 
   ngOnInit(): void {
+    this._route.params.subscribe(params => {
+      const quoteId = params['quoteId'];
+      
+      this.editButtonLink = `quote-calculator/${quoteId}`;
+
+      // GET quote
+      if(quoteId && quoteId > 0)
+        this._quoteService.getQuote(quoteId)
+          .subscribe(data => {
+            console.log(data);
+            this.quote = data;
+            this.totalRepayments = (this.quote.repayment || 0 ) * (this.quote.paymentPeriods  || 0);
+          });
+    });
   }
 
 }

@@ -2,6 +2,16 @@
     <form class="example-form">
         <h1 class="quote-header">Quote Calculator</h1>
         <div>
+            <mat-form-field appearance="fill" class="width-max">
+                <mat-label>Select Product</mat-label>
+                <mat-select [value]="selectedProduct" [(ngModel)]="quote.product" name="product">
+                <mat-option *ngFor="let product of products" [value]="product">
+                    {{product.name}} - {{product.description}}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
             <div class="slider-container">
                 <mat-slider thumbLabel aria-label="unit(s)" [min]="amountMin" [max]="amountMax" step="100" [(ngModel)]="quote.amountRequired" name="amountRequired"></mat-slider>
                 <div class="slider-text-container">
@@ -11,7 +21,7 @@
                 </div>
             </div>
             <div class="slider-container">
-                <mat-slider thumbLabel aria-label="unit(s)" [min]="termMin" [max]="termMax" step="1"></mat-slider>
+                <mat-slider thumbLabel aria-label="unit(s)" [min]="termMin" [max]="termMax" step="1" [(ngModel)]="quote.term" name="term"></mat-slider>
                 <div class="slider-text-container">
                     <span><b>{{termMin}}</b></span>
                     <span class="slider-label">{{sliderTermLabel}}</span>
@@ -19,37 +29,7 @@
                 </div>
             </div>
         </div>
-        <div>
-            <mat-form-field appearance="fill">
-                <mat-label>Title</mat-label>
-                <mat-select [(ngModel)]="quote.title" name="title">
-                <mat-option *ngFor="let title of titles" [value]="title.value">
-                    {{title.viewValue}}
-                </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="" appearance="fill">
-                <mat-label>First name</mat-label>
-                <input matInput [(ngModel)]="quote.firstName" name="firstName">
-            </mat-form-field>
-
-            <mat-form-field class="" appearance="fill">
-                <mat-label>Last name</mat-label>
-                <input matInput [(ngModel)]="quote.lastName" name="lastName">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="" appearance="fill">
-                <mat-label>Your email</mat-label>
-                <input matInput [(ngModel)]="quote.email" name="email">
-            </mat-form-field>
-        
-            <mat-form-field class="" appearance="fill">
-                <mat-label>Mobile number</mat-label>
-                <input matInput [(ngModel)]="quote.mobile" name="mobile">
-            </mat-form-field>
-            
+        <div class="margin-left-auto">
             <mat-form-field appearance="fill">
                 <mat-label>Date of birth</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="quote.dateOfBirth" name="dateOfBirth">
@@ -58,10 +38,44 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
+        <div>
+            <div class="name-row">
+                <mat-form-field appearance="fill" class="name-title">
+                    <mat-label>Title</mat-label>
+                    <mat-select [(ngModel)]="quote.title" name="title">
+                    <mat-option *ngFor="let title of titles" [value]="title.value">
+                        {{title.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="" appearance="fill">
+                    <mat-label>First name</mat-label>
+                    <input matInput [(ngModel)]="quote.firstName" name="firstName">
+                </mat-form-field>
+
+                <mat-form-field class="" appearance="fill">
+                    <mat-label>Last name</mat-label>
+                    <input matInput [(ngModel)]="quote.lastName" name="lastName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-form-field class="" appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input matInput [(ngModel)]="quote.email" name="email">
+            </mat-form-field>
+        
+            <mat-form-field class="" appearance="fill">
+                <mat-label>Mobile number</mat-label>
+                <input matInput [(ngModel)]="quote.mobile" name="mobile">
+            </mat-form-field>
+            
+        </div>
         
         <div class="calculate-quote text-align-center">
-            <button type="submit" class="quote-primary" mat-raised-button color="primary">Calculate quote</button>
-            <h5>Quote does not affect your credit score</h5>
+            <button type="submit" class="quote-primary" mat-raised-button color="primary" (click)="calculateQuote()">Calculate quote</button>
+            <h5>Quote does not affect your credit score.</h5>
         </div>
     </form>
 

@@ -38,3 +38,10 @@ div.apply-quote > p {
     font-size: 13.5px;
 }
 
+.edit-info{
+    cursor: pointer
+}
+
+.edit-info:hover{
+    color: blue
+}

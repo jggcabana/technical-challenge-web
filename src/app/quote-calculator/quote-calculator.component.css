@@ -6,9 +6,13 @@ mat-slider {
     width: 500px;
 }
 
+mat-form-field{
+    width: 245px;
+    padding: 2.5px;
+}
+
 .slider-container{
     /* width: 450px; */
-    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -20,4 +24,12 @@ mat-slider {
 
 div.calculate-quote{
     margin-top: 10px;
+}
+
+.name-row{
+    display: flex;
+}
+
+.name-title{
+    width: 75px !important;
 }

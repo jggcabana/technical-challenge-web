@@ -25,6 +25,7 @@ h1,h5{
 }
 
 .quote-container{
+    margin-top: 20px !important;
     width: 500px;
 }
 
@@ -41,7 +42,6 @@ h1,h5{
 
 .flex-space-end{
     display: flex;
-    /* justify-content: space; */
     align-items: flex-end;
 }
 
@@ -50,4 +50,14 @@ button.quote-primary {
     height: 50px;
     font-size: 22px;
     background-color: #4cd133 !important;
+}
+
+.width-max{
+    width: 100% !important;
+}
+
+.margin-left-auto{
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* margin-left: auto; */
 }

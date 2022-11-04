@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable, Observer} from 'rxjs';
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-main-tabs',
@@ -11,13 +10,14 @@ import { Router } from '@angular/router';
 
 export class MainTabsComponent implements OnInit {
   navLinks: any[];
+  quoteId? : number;
   activeLinkIndex = -1;
 
-  constructor(private router: Router){
+  constructor(private router: Router, private _route : ActivatedRoute){
     this.navLinks = [
       {
         label: 'Quote Calculator',
-        link: './quote-calculator',
+        link: `./quote-calculator`,
         index: 0
       }, {
         label: 'Review Quote',
@@ -33,6 +33,17 @@ export class MainTabsComponent implements OnInit {
         this.navLinks.indexOf(
           this.navLinks.find(x => 
             x.link === '.' + this.router.url))
-    })
+    });
+
+    this.router.events.subscribe(val => {
+      if (val instanceof RoutesRecognized) {
+          this.quoteId = val.state.root.firstChild?.params['quoteId'];
+      }
+  });
+
+    // this._route.params.subscribe(params => {
+    //   console.log(this._route);
+    //   this.quoteId = params['quoteId'];
+    // });
   }
 }
